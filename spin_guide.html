@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>轉盤++ — 使用說明</title>
+  <meta name="description" content="轉盤++使用教學：初次啟動導覽、亂數抽獎、盲盒抽獎、活動抽獎與設定頁面說明。">
+  <meta name="apple-itunes-app" content="app-id=6743739014">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Reuse custom styles from other pages */
+    .gradient { background: linear-gradient(135deg, #0ea5e9 0%, #22c55e 100%); }
+    .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .card { transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+    .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,0.6); }
+  </style>
+</head>
+<body class="antialiased bg-slate-50 text-slate-800">
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="logo_yi.png" alt="Yi Apps Logo" class="h-8 w-8 rounded" />
+        <span class="font-semibold">Yi Apps</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="spin.html" class="hover:text-slate-900 text-slate-600" data-i18n="nav.spin">轉盤++</a>
+        <a href="gps.html" class="hover:text-slate-900 text-slate-600" data-i18n="nav.gps">GPS時速表</a>
+        <a href="#" onclick="openDocsModal(event)" class="hover:text-slate-900 text-slate-600" data-i18n="nav.guide">使用說明</a>
+        <a href="mailto:tzuyichan0406@gmail.com" class="hover:text-slate-900 text-slate-600" data-i18n="nav.contact">聯絡我們</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-1 text-sm mr-3">
+        <button type="button" onclick="setLang('zh-Hant')" class="hover:text-slate-900">繁中</button>
+        <span>/</span>
+        <button type="button" onclick="setLang('zh-Hans')" class="hover:text-slate-900">简中</button>
+        <span>/</span>
+        <button type="button" onclick="setLang('en')" class="hover:text-slate-900">EN</button>
+      </div>
+      <a href="https://apps.apple.com/app/luckyspin/id6743739014" class="group inline-flex items-center gap-2 rounded-xl bg-black px-3 py-2 text-white text-sm font-medium hover:opacity-90 shadow-soft">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5">
+          <path d="M12 3v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span data-i18n="spin_guide.app_btn">前往 App Store</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Docs Modal -->
+  <div id="docsModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/30" onclick="closeDocsModal()"></div>
+    <div class="relative mx-auto mt-28 w-[92%] max-w-md rounded-2xl bg-white p-5 shadow-soft ring-1 ring-slate-200">
+      <h3 class="text-lg font-semibold" data-i18n="docs.choose">選擇應用的使用說明</h3>
+      <ul class="mt-4 space-y-3">
+        <!-- Spinner guide link -->
+        <li>
+          <a href="spin_guide.html" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50">
+            <div class="font-medium" data-i18n="docs.spin_title">轉盤++</div>
+            <div class="text-sm text-slate-600" data-i18n="docs.spin_desc">進入轉盤的說明</div>
+          </a>
+        </li>
+        <!-- GPS guide link -->
+        <li>
+          <a href="guide.html" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50">
+            <div class="font-medium" data-i18n="docs.gps_title">GPS時速表</div>
+            <div class="text-sm text-slate-600" data-i18n="docs.gps_desc">進入時速表的說明</div>
+          </a>
+        </li>
+      </ul>
+      <div class="mt-4 text-right">
+        <button class="inline-flex items-center rounded-lg px-3 py-1.5 ring-1 ring-slate-300 text-sm hover:bg-slate-50" onclick="closeDocsModal()" data-i18n="docs.close">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guide Content -->
+  <section class="mx-auto max-w-3xl px-4 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold" data-i18n="spin_guide.page_title">使用說明</h1>
+    <p class="mt-3 text-slate-600" data-i18n="spin_guide.subtitle">以下教你如何快速上手轉盤++。</p>
+    <div class="mt-10 space-y-10">
+      <!-- Section 1: First launch walkthrough -->
+      <div>
+        <h2 class="text-xl font-bold" data-i18n="spin_guide.section1_title">1）初次啟動導覽</h2>
+        <ul class="list-disc pl-6 mt-3 text-slate-700 space-y-2">
+          <li data-i18n="spin_guide.section1_b1">啟動 App 後首次會顯示導覽，引導設定與功能介紹。</li>
+          <li data-i18n="spin_guide.section1_b2">可隨時重新開啟導覽於設定頁面。</li>
+        </ul>
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
+          <img src="spinmain.png" alt="初次啟動導覽" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+        </div>
+      </div>
+      <!-- Section 2: Random number draw -->
+      <div>
+        <h2 class="text-xl font-bold" data-i18n="spin_guide.section2_title">2）亂數抽獎說明</h2>
+        <ul class="list-disc pl-6 mt-3 text-slate-700 space-y-2">
+          <li data-i18n="spin_guide.section2_b1">設定最小與最大值後，一鍵抽出隨機號碼。</li>
+          <li data-i18n="spin_guide.section2_b2">適合選號、抽籤、摸彩用途。</li>
+        </ul>
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
+          <img src="spinradom.png" alt="亂數抽獎說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+        </div>
+      </div>
+      <!-- Section 3: Blind box draw -->
+      <div>
+        <h2 class="text-xl font-bold" data-i18n="spin_guide.section3_title">3）盲盒抽獎說明</h2>
+        <ul class="list-disc pl-6 mt-3 text-slate-700 space-y-2">
+          <li data-i18n="spin_guide.section3_b1">點擊任一盲盒圖示，即可開啟隱藏的獎項。</li>
+          <li data-i18n="spin_guide.section3_b2">已開過的盲盒不可重複開啟。</li>
+        </ul>
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
+          <img src="spinbox.png" alt="盲盒抽獎說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+        </div>
+      </div>
+      <!-- Section 4: Event draw -->
+      <div>
+        <h2 class="text-xl font-bold" data-i18n="spin_guide.section4_title">4）活動抽獎說明</h2>
+        <ul class="list-disc pl-6 mt-3 text-slate-700 space-y-2">
+          <li data-i18n="spin_guide.section4_b1">自訂活動名稱、獎項與參加者。</li>
+          <li data-i18n="spin_guide.section4_b2">抽獎結果可分享給朋友或參加者。</li>
+        </ul>
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
+          <img src="spinevent.png" alt="活動抽獎說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+        </div>
+      </div>
+      <!-- Section 5: Settings page -->
+      <div>
+        <h2 class="text-xl font-bold" data-i18n="spin_guide.section5_title">5）設定頁面說明</h2>
+        <ul class="list-disc pl-6 mt-3 text-slate-700 space-y-2">
+          <li data-i18n="spin_guide.section5_b1">管理您的轉盤、盲盒及其他設定。</li>
+          <li data-i18n="spin_guide.section5_b2">選擇語言、主題及音效等個人化設定。</li>
+        </ul>
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
+          <img src="spinsetting.png" alt="設定頁面說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Section -->
+    <div class="mt-12">
+      <h2 class="text-xl font-bold" data-i18n="spin_guide.video_title">教學影片</h2>
+      <div class="mt-4 aspect-video rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/9OYh72UsGV0" title="LuckySpin Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Download & Contact -->
+    <div class="mt-12 rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft">
+      <h3 class="font-semibold" data-i18n="spin_guide.download_title">下載與聯絡</h3>
+      <p class="mt-2">
+        <a href="https://apps.apple.com/app/luckyspin/id6743739014" class="group inline-flex items-center gap-2 rounded-xl border border-slate-300 px-3 py-2 font-medium text-slate-800 hover:bg-slate-50">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5">
+            <path d="M12 3v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="spin_guide.app_btn">前往 App Store</span>
+        </a>
+      </p>
+      <p class="mt-1 text-slate-600">
+        <span data-i18n="spin_guide.download_intro">若有建議或合作洽談，請寄信至：</span><a class="underline" href="mailto:tzuyichan0406@gmail.com">tzuyichan0406@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 bg-white border-t">
+    <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-slate-500">© 2025 Yi Apps — 版權所有，未經授權不得複製</div>
+      <div class="text-sm text-slate-500">Taichung, Taiwan · <a class="underline" href="mailto:tzuyichan0406@gmail.com">tzuyichan0406@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <!-- Scripts: modal and translation support -->
+  <script>
+    function openDocsModal(e){ if(e) e.preventDefault(); document.getElementById('docsModal').classList.remove('hidden'); }
+    function closeDocsModal(){ document.getElementById('docsModal').classList.add('hidden'); }
+    /* Translation dictionary for LuckySpin user guide. Provides Traditional Chinese, Simplified Chinese and English strings. */
+    const translations = {
+      'zh-Hant': {
+        'nav.gps': 'GPS時速表',
+        'nav.spin': '轉盤++',
+        'nav.guide': '使用說明',
+        'nav.contact': '聯絡我們',
+        'spin_guide.app_btn': '前往 App Store',
+        'spin_guide.page_title': '使用說明',
+        'spin_guide.subtitle': '以下教你如何快速上手轉盤++。',
+        'spin_guide.section1_title': '1）初次啟動導覽',
+        'spin_guide.section1_b1': '啟動 App 後按左上角導覽鈕會顯示導覽，引導設定與功能介紹。',
+        'spin_guide.section1_b2': '可隨時重新開啟導覽於主頁面。',
+        'spin_guide.section2_title': '2）亂數抽獎說明',
+        'spin_guide.section2_b1': '設定最小與最大值後，一鍵抽出隨機號碼。',
+        'spin_guide.section2_b2': '適合選號、抽籤、摸彩用途。',
+        'spin_guide.section3_title': '3）盲盒抽獎說明',
+        'spin_guide.section3_b1': '點擊任一盲盒圖示，即可開啟隱藏的獎項，右下角設定鈕可自訂參數、圖片。',
+        'spin_guide.section3_b2': '已開過的盲盒不可重複開啟。',
+        'spin_guide.section4_title': '4）活動抽獎說明',
+        'spin_guide.section4_b1': '自訂活動名稱、獎項與參加者。',
+        'spin_guide.section4_b2': '抽獎結果可分享給朋友或參加者。',
+        'spin_guide.section5_title': '5）設定頁面說明',
+        'spin_guide.section5_b1': '自訂您的特效、曲線及其他設定。',
+        'spin_guide.section5_b2': '選擇語言、主題及音效等個人化設定。',
+        'spin_guide.video_title': '教學影片',
+        'spin_guide.download_title': '下載與聯絡',
+        'spin_guide.download_intro': '若有建議或合作洽談，請寄信至：',
+        'docs.choose': '選擇應用的使用說明',
+        'docs.spin_title': '轉盤++',
+        'docs.spin_desc': '進入轉盤的說明',
+        'docs.gps_title': 'GPS時速表',
+        'docs.gps_desc': '進入時速表的說明',
+        'docs.close': '關閉'
+      },
+      'zh-Hans': {
+  "nav.gps": "GPS时速表",
+  "nav.spin": "转盘++",
+  "nav.guide": "使用说明",
+  "nav.contact": "联系我们",
+  "spin_guide.app_btn": "前往 App Store",
+  "spin_guide.page_title": "使用说明",
+  "spin_guide.subtitle": "以下教你如何快速上手转盘++。",
+  "spin_guide.section1_title": "1）初次启动导览",
+  "spin_guide.section1_b1": "启动 App 后按左上角导览按钮会显示导览，引导设置与功能介绍。",
+  "spin_guide.section1_b2": "可随时重新开启导览于主页面。",
+  "spin_guide.section2_title": "2）随机抽奖说明",
+  "spin_guide.section2_b1": "设置最小与最大值后，一键抽出随机号码。",
+  "spin_guide.section2_b2": "适合选号、抽签、摸彩用途。",
+  "spin_guide.section3_title": "3）盲盒抽奖说明",
+  "spin_guide.section3_b1": "点击任一盲盒图标，即可开启隐藏奖项，右下角设置按钮可自定义参数、图片。",
+  "spin_guide.section3_b2": "已开启的盲盒不可重复开启。",
+  "spin_guide.section4_title": "4）活动抽奖说明",
+  "spin_guide.section4_b1": "自定义活动名称、奖项与参与者。",
+  "spin_guide.section4_b2": "抽奖结果可分享给朋友或参与者。",
+  "spin_guide.section5_title": "5）设置页面说明",
+  "spin_guide.section5_b1": "自定义您的特效、曲线及其他设置。",
+  "spin_guide.section5_b2": "选择语言、主题及音效等个性化设置。",
+  "spin_guide.video_title": "教学视频",
+  "spin_guide.download_title": "下载与联系",
+  "spin_guide.download_intro": "若有建议或合作洽谈，请发送邮件至：",
+  "docs.choose": "选择应用的使用说明",
+  "docs.spin_title": "转盘++",
+  "docs.spin_desc": "进入转盘的说明",
+  "docs.gps_title": "GPS时速表",
+  "docs.gps_desc": "进入时速表的说明",
+  "docs.close": "关闭"
+},
+      'en': {
+  "nav.gps": "GPS Speedometer",
+  "nav.spin": "LuckySpin++",
+  "nav.guide": "User Guide",
+  "nav.contact": "Contact Us",
+  "spin_guide.app_btn": "Go to App Store",
+  "spin_guide.page_title": "User Guide",
+  "spin_guide.subtitle": "Learn how to get started with LuckySpin++.",
+  "spin_guide.section1_title": "1) First Launch Tutorial",
+  "spin_guide.section1_b1": "After launching the app, tap the top-left guide button to view the tutorial for setup and features.",
+  "spin_guide.section1_b2": "You can reopen the tutorial anytime from the main page.",
+  "spin_guide.section2_title": "2) Random Draw Guide",
+  "spin_guide.section2_b1": "Set the minimum and maximum values, then generate a random number with one tap.",
+  "spin_guide.section2_b2": "Perfect for number picking, raffles, and lotteries.",
+  "spin_guide.section3_title": "3) Blind Box Draw Guide",
+  "spin_guide.section3_b1": "Tap any blind box icon to reveal a hidden prize. Use the settings button at the bottom right to customize parameters and images.",
+  "spin_guide.section3_b2": "Opened blind boxes cannot be reopened.",
+  "spin_guide.section4_title": "4) Event Draw Guide",
+  "spin_guide.section4_b1": "Customize event names, prizes, and participants.",
+  "spin_guide.section4_b2": "Share the draw results with friends or participants.",
+  "spin_guide.section5_title": "5) Settings Page Guide",
+  "spin_guide.section5_b1": "Customize your effects, curves, and other preferences.",
+  "spin_guide.section5_b2": "Choose your language, theme, and sound effects for personalization.",
+  "spin_guide.video_title": "Tutorial Video",
+  "spin_guide.download_title": "Download & Contact",
+  "spin_guide.download_intro": "For suggestions or business inquiries, please email:",
+  "docs.choose": "Choose an app guide",
+  "docs.spin_title": "LuckySpin++",
+  "docs.spin_desc": "Open the spinner guide",
+  "docs.gps_title": "GPS Speedometer",
+  "docs.gps_desc": "Open the speedometer guide",
+  "docs.close": "Close"
+}
+    };
+    function setLang(lang) {
+      const trans = translations[lang];
+      if (!trans) return;
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (trans[key]) {
+          el.textContent = trans[key];
+        }
+      });
+    }
+    // Default language
+    setLang('zh-Hant');
+  </script>
+</body>
+</html>

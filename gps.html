@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPS時速表 — 功能介紹</title>
+  <meta name="description" content="GPS時速表：精準測速、地圖模式、加速測試、相機 HUD、旅程紀錄與自由計算統計。">
+  <meta name="apple-itunes-app" content="app-id=6751755547">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom classes for subtle effects */
+    .gradient { background: linear-gradient(135deg, #0ea5e9 0%, #22c55e 100%); }
+    .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .card { transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+    .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,0.6); }
+
+    @keyframes bounceY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .bounce-button {
+      animation: bounceY 1.2s infinite;
+    }
+  </style>
+</head>
+<body class="antialiased bg-slate-50 text-slate-800">
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="logo_yi.png" alt="Yi Apps Logo" class="h-8 w-8 rounded" />
+        <span class="font-semibold">Yi Apps</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="spin.html" class="hover:text-slate-900 text-slate-600" data-i18n="nav.spin">轉盤++</a>
+        <a href="gps.html" class="hover:text-slate-900 text-slate-600" data-i18n="nav.gps">GPS時速表</a>
+        <a href="#" onclick="openDocsModal(event)" class="hover:text-slate-900 text-slate-600" data-i18n="nav.guide">使用說明</a>
+        <a href="mailto:tzuyichan0406@gmail.com" class="hover:text-slate-900 text-slate-600" data-i18n="nav.contact">聯絡我們</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-1 text-sm mr-3">
+        <button type="button" onclick="setLang('zh-Hant')" class="hover:text-slate-900">繁中</button>
+        <span>/</span>
+        <button type="button" onclick="setLang('zh-Hans')" class="hover:text-slate-900">简中</button>
+        <span>/</span>
+        <button type="button" onclick="setLang('en')" class="hover:text-slate-900">EN</button>
+      </div>
+      <a href="https://apps.apple.com/app/id6751755547" class="inline-flex items-center rounded-xl bg-black px-3 py-2 text-white text-sm font-medium hover:opacity-90 bounce-button" data-i18n="gps.app_btn">
+        <img src="apple-logo-svgrepo-com.svg" alt="Apple logo" class="h-4 w-4 mr-2" />
+        <span data-i18n="gps.app_btn">立即下載</span>
+      </a>
+    </div>
+  </header>
+  <div id="docsModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/30" onclick="closeDocsModal()"></div>
+    <div class="relative mx-auto mt-28 w-[92%] max-w-md rounded-2xl bg-white p-5 shadow-soft ring-1 ring-slate-200">
+      <h3 class="text-lg font-semibold" data-i18n="docs.choose">選擇應用的使用說明</h3>
+      <ul class="mt-4 space-y-3">
+        <!-- Spinner guide link -->
+        <li>
+          <a href="spin_guide.html" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50">
+            <div class="font-medium" data-i18n="docs.spin_title">轉盤++</div>
+            <div class="text-sm text-slate-600" data-i18n="docs.spin_desc">進入轉盤的說明</div>
+          </a>
+        </li>
+        <!-- GPS guide link -->
+        <li>
+          <a href="guide.html" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50">
+            <div class="font-medium" data-i18n="docs.gps_title">GPS時速表</div>
+            <div class="text-sm text-slate-600" data-i18n="docs.gps_desc">進入時速表的說明</div>
+          </a>
+        </li>
+      </ul>
+      <div class="mt-4 text-right">
+        <button class="inline-flex items-center rounded-lg px-3 py-1.5 ring-1 ring-slate-300 text-sm hover:bg-slate-50" onclick="closeDocsModal()" data-i18n="docs.close">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight" data-i18n="gps.title">GPS時速表</h1>
+        <p class="mt-4 text-slate-600 text-lg" data-i18n="gps.tagline">
+          讓每段旅程更專業！精準測速、地圖模式、加速測試、相機 HUD、旅程紀錄與依使用者自由可計算的油耗/電耗統計。
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://apps.apple.com/app/id6751755547" class="inline-flex items-center rounded-xl bg-black px-4 py-3 text-white text-base font-medium hover:opacity-90 shadow-soft bounce-button" data-i18n="gps.app_btn">
+            <img src="apple-logo-svgrepo-com.svg" alt="Apple logo" class="h-4 w-4 mr-2" />
+            <span data-i18n="gps.app_btn">立即下載</span>
+          </a>
+          <a href="guide.html" class="inline-flex items-center rounded-xl px-4 py-3 ring-1 ring-slate-300 text-base font-medium hover:bg-white glass shadow-soft" data-i18n="gps.guide_btn">使用說明</a>
+        </div>
+        <div class="mt-4 text-xs text-slate-500">iPhone（iOS）</div>
+      </div>
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden shadow-soft ring-1 ring-slate-200 bg-white">
+          <img src="hero_speed_lines.png" alt="抽象速度線條" class="w-full h-auto">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-12 md:py-20 bg-white">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="text-2xl md:text-3xl font-bold" data-i18n="gps.core_title">核心功能</h2>
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft">
+          <div class="text-3xl">🚀</div>
+          <h3 class="mt-2 font-semibold" data-i18n="gps.feature_speed_title">精準測速</h3>
+          <p class="mt-2 text-slate-600" data-i18n="gps.feature_speed_desc">高速更新率、km/h 與 mph 切換，市區或高速都穩定可靠。</p>
+        </div>
+        <div class="rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft">
+          <div class="text-3xl">🗺️</div>
+          <h3 class="mt-2 font-semibold" data-i18n="gps.feature_map_title">地圖模式</h3>
+          <p class="mt-2 text-slate-600" data-i18n="gps.feature_map_desc">北向/航向模式、動態路徑、起訖自動縮放，旅程資訊一目了然。</p>
+        </div>
+        <div class="rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft">
+          <div class="text-3xl">🏁</div>
+          <h3 class="mt-2 font-semibold" data-i18n="gps.feature_acc_title">加速測試</h3>
+          <p class="mt-2 text-slate-600" data-i18n="gps.feature_acc_desc">0–50、0–60、0–100、100–200 km/h 與 0–400m，一鍵記錄最佳成績與最高速。</p>
+        </div>
+        <div class="rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft">
+          <div class="text-3xl">📷</div>
+          <h3 class="mt-2 font-semibold" data-i18n="gps.feature_hud_title">相機 HUD</h3>
+          <p class="mt-2 text-slate-600" data-i18n="gps.feature_hud_desc">錄影同時顯示速度錶，日夜清晰，打造酷炫行車記錄。</p>
+        </div>
+        <div class="rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft">
+          <div class="text-3xl">📊</div>
+          <h3 class="mt-2 font-semibold" data-i18n="gps.feature_trip_title">旅程紀錄</h3>
+          <p class="mt-2 text-slate-600" data-i18n="gps.feature_trip_desc">單筆/全選管理；匯出/匯入；支援依使用者自由可計算的油耗/電耗等多元統計。</p>
+        </div>
+        <div class="rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft">
+          <div class="text-3xl">💎</div>
+          <h3 class="mt-2 font-semibold" data-i18n="gps.feature_vip_title">VIP 高級功能</h3>
+          <p class="mt-2 text-slate-600" data-i18n="gps.feature_vip_desc">去廣告、完整紀錄、更多自訂；支援快捷選單/嘿 Siri/捷徑/自動化/動作按鈕。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="py-12 md:py-20 bg-slate-50">
+    <div class="mx-auto max-w-6xl px-4 grid md:grid-cols-3 gap-6">
+      <img src="gallery_speed_lines.png" class="rounded-2xl ring-1 ring-slate-200 shadow-soft" alt="速度線條 2">
+      <img src="hero_speed_lines.png" class="rounded-2xl ring-1 ring-slate-200 shadow-soft" alt="速度線條">
+      <img src="gallery_network.png" class="rounded-2xl ring-1 ring-slate-200 shadow-soft" alt="抽象網絡">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 bg-white border-t">
+    <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-slate-500">© 2025 Yi Apps — 版權所有，未經授權不得複製</div>
+      <div class="text-sm text-slate-500">Taichung, Taiwan · <a class="underline" href="mailto:tzuyichan0406@gmail.com">tzuyichan0406@gmail.com</a></div>
+    </div>
+  </footer>
+  <script>
+    function openDocsModal(e){ if(e) e.preventDefault(); document.getElementById('docsModal').classList.remove('hidden'); }
+    function closeDocsModal(){ document.getElementById('docsModal').classList.add('hidden'); }
+    /*
+      Translation dictionary for GPS page. Supports Traditional Chinese (zh-Hant), Simplified Chinese (zh-Hans) and English (en).
+      Elements with a data-i18n attribute will have their textContent replaced with the corresponding value from the selected language.
+    */
+    const translations = {
+      'zh-Hant': {
+        'nav.gps': 'GPS時速表',
+        'nav.spin': '轉盤++',
+        'nav.guide': '使用說明',
+        'nav.contact': '聯絡我們',
+        'gps.title': 'GPS時速表',
+        'gps.tagline': '讓每段旅程更專業！精準測速、地圖模式、加速測試、相機 HUD、旅程紀錄與依使用者自由可計算的油耗/電耗統計。',
+        'gps.app_btn': '立即下載',
+        'gps.guide_btn': '使用說明',
+        'gps.core_title': '核心功能',
+        'gps.feature_speed_title': '精準測速',
+        'gps.feature_speed_desc': '高速更新率、km/h 與 mph 切換，市區或高速都穩定可靠。',
+        'gps.feature_map_title': '地圖模式',
+        'gps.feature_map_desc': '北向/航向模式、動態路徑、起訖自動縮放，旅程資訊一目了然。',
+        'gps.feature_acc_title': '加速測試',
+        'gps.feature_acc_desc': '0–50、0–60、0–100、100–200 km/h 與 0–400m，一鍵記錄最佳成績與最高速。',
+        'gps.feature_hud_title': '相機 HUD',
+        'gps.feature_hud_desc': '錄影同時顯示速度錶，日夜清晰，打造酷炫行車記錄。',
+        'gps.feature_trip_title': '旅程紀錄',
+        'gps.feature_trip_desc': '單筆/全選管理；匯出/匯入；支援依使用者自由可計算的油耗/電耗等多元統計。',
+        'gps.feature_vip_title': 'VIP 高級功能',
+        'gps.feature_vip_desc': '去廣告、完整紀錄、更多自訂；支援快捷選單/嘿 Siri/捷徑/自動化/動作按鈕。',
+        'docs.choose': '選擇應用的使用說明',
+        'docs.spin_title': '轉盤++',
+        'docs.spin_desc': '進入轉盤的說明',
+        'docs.gps_title': 'GPS時速表',
+        'docs.gps_desc': '進入時速表的說明',
+        'docs.close': '關閉'
+      },
+      'zh-Hans': {
+        'nav.gps': 'GPS时速表',
+        'nav.spin': '转盘++',
+        'nav.guide': '使用说明',
+        'nav.contact': '联系我们',
+        'gps.title': 'GPS时速表',
+        'gps.tagline': '让每段旅程更专业！精准测速、地图模式、加速测试、相机 HUD、旅程记录与依用户自由可计算的油耗/电耗统计。',
+        'gps.app_btn': '立即下载',
+        'gps.guide_btn': '使用说明',
+        'gps.core_title': '核心功能',
+        'gps.feature_speed_title': '精准测速',
+        'gps.feature_speed_desc': '高速更新率、km/h与mph切换，市区或高速都稳定可靠。',
+        'gps.feature_map_title': '地图模式',
+        'gps.feature_map_desc': '北向/航向模式、动态路径、起讫自动缩放，旅程信息一目了然。',
+        'gps.feature_acc_title': '加速测试',
+        'gps.feature_acc_desc': '0–50、0–60、0–100、100–200 km/h与0–400m，一键记录最佳成绩与最高速。',
+        'gps.feature_hud_title': '相机 HUD',
+        'gps.feature_hud_desc': '录影同时显示速度表，日夜清晰，打造酷炫行车记录。',
+        'gps.feature_trip_title': '旅程记录',
+        'gps.feature_trip_desc': '单笔/全选管理；导出/导入；支持依用户自由可计算的油耗/电耗等多元统计。',
+        'gps.feature_vip_title': 'VIP高级功能',
+        'gps.feature_vip_desc': '去广告、完整记录、更多自定义；支持快捷菜单/嘿 Siri/捷径/自动化/动作按钮。',
+        'docs.choose': '选择应用的使用说明',
+        'docs.spin_title': '转盘++',
+        'docs.spin_desc': '进入转盘的说明',
+        'docs.gps_title': 'GPS时速表',
+        'docs.gps_desc': '进入时速表的说明',
+        'docs.close': '关闭'
+      },
+      'en': {
+        'nav.gps': 'GPS Speedometer',
+        'nav.spin': 'LuckySpin++',
+        'nav.guide': 'User Guide',
+        'nav.contact': 'Contact Us',
+        'gps.title': 'GPS Speedometer',
+        'gps.tagline': 'Make every journey more professional! Accurate speed measurement, map mode, acceleration tests, camera HUD, trip records and customizable fuel/electricity statistics.',
+        'gps.app_btn': 'Download Now',
+        'gps.guide_btn': 'User Guide',
+        'gps.core_title': 'Core Features',
+        'gps.feature_speed_title': 'Accurate Speed',
+        'gps.feature_speed_desc': 'High refresh rate, switch between km/h and mph, reliable in city and highway.',
+        'gps.feature_map_title': 'Map Mode',
+        'gps.feature_map_desc': 'North-up/orientation mode, dynamic path, auto zoom to start and end, trip info at a glance.',
+        'gps.feature_acc_title': 'Acceleration Tests',
+        'gps.feature_acc_desc': '0–50, 0–60, 0–100, 100–200 km/h and 0–400 m; one tap to record best time and top speed.',
+        'gps.feature_hud_title': 'Camera HUD',
+        'gps.feature_hud_desc': 'Display speedometer during recording, clear day and night, create cool driving records.',
+        'gps.feature_trip_title': 'Trip Records',
+        'gps.feature_trip_desc': 'Manage single or all entries; export/import; support customizable fuel/electricity statistics.',
+        'gps.feature_vip_title': 'VIP Features',
+        'gps.feature_vip_desc': 'Remove ads, full records, more customization; support quick actions, Hey Siri, shortcuts, automation and action buttons.',
+        'docs.choose': 'Choose an app guide',
+        'docs.spin_title': 'LuckySpin++',
+        'docs.spin_desc': 'Open the spinner guide',
+        'docs.gps_title': 'GPS Speedometer',
+        'docs.gps_desc': 'Open the speedometer guide',
+        'docs.close': 'Close'
+      }
+    };
+    function setLang(lang) {
+      const trans = translations[lang];
+      if (!trans) return;
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (trans[key]) {
+          el.textContent = trans[key];
+        }
+      });
+    }
+    // default language
+    setLang('zh-Hant');
+  </script>
+</body>
+</html>

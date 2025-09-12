@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yi Apps — 轉盤++、GPS時速表</title>
+  <meta name="description" content="Yi Apps: Discover GPS Speedometer and upcoming apps.">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom classes for subtle effects */
+    .gradient { background: linear-gradient(135deg, #0ea5e9 0%, #22c55e 100%); }
+    .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .card { transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+    .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,0.6); }
+
+    @keyframes bounceY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .bounce-button {
+      animation: bounceY 1.2s infinite;
+    }
+  </style>
+</head>
+<body class="antialiased bg-slate-50 text-slate-800">
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <!-- Replace gradient placeholder with logo image -->
+        <!-- Updated flat logo -->
+        <img src="logo_yi.png" alt="Yi Apps Logo" class="h-8 w-8 rounded" />
+        <span class="font-semibold">Yi Apps</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="spin.html" class="hover:text-slate-900 text-slate-600 flex items-center gap-1">
+          <!-- Add ring and rounding to make the white-background icon stand out on the white navbar -->
+          <img src="spin_icon.png" alt="轉盤++ icon" class="h-5 w-5 mr-1 rounded ring-1 ring-slate-200">
+          <span data-i18n="nav.spin">轉盤++</span>
+        </a>
+        <a href="gps.html" class="hover:text-slate-900 text-slate-600 flex items-center gap-1">
+          <img src="gps_icon.png" alt="GPS時速表 icon" class="h-5 w-5 mr-1 rounded ring-1 ring-slate-200">
+          <span data-i18n="nav.gps">GPS時速表</span>
+        </a>
+        <a href="#" onclick="openDocsModal(event)" class="hover:text-slate-900 text-slate-600" data-i18n="nav.guide">使用說明</a>
+        <a href="mailto:tzuyichan0406@gmail.com" class="hover:text-slate-900 text-slate-600" data-i18n="nav.contact">聯絡我們</a>
+      </nav>
+      <!-- Language switcher -->
+      <div class="hidden md:flex items-center gap-1 text-sm mr-3">
+        <button type="button" onclick="setLang('zh-Hant')" class="hover:text-slate-900">繁中</button>
+        <span>/</span>
+        <button type="button" onclick="setLang('zh-Hans')" class="hover:text-slate-900">简中</button>
+        <span>/</span>
+        <button type="button" onclick="setLang('en')" class="hover:text-slate-900">EN</button>
+      </div>
+      <a href="https://apps.apple.com/us/developer/chan-tzu-yi/id1804292861" class="inline-flex items-center rounded-xl bg-black px-3 py-2 text-white text-sm font-medium hover:opacity-90 bounce-button" data-i18n="nav.appstore">
+        前往 App Store
+      </a>
+    </div>
+  </header>
+  <div id="docsModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/30" onclick="closeDocsModal()"></div>
+    <div class="relative mx-auto mt-28 w-[92%] max-w-md rounded-2xl bg-white p-5 shadow-soft ring-1 ring-slate-200">
+      <h3 class="text-lg font-semibold" data-i18n="docs.choose">選擇應用的使用說明</h3>
+      <ul class="mt-4 space-y-3">
+        <!-- Spinner guide link with icon -->
+        <li>
+          <a href="spin_guide.html" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50 flex items-center gap-3">
+            <!-- Use slightly smaller size with ring/border for better balance in the modal -->
+            <img src="spin_icon.png" alt="轉盤++ icon" class="h-6 w-6 mr-3 rounded ring-1 ring-slate-200">
+            <div>
+              <div class="font-medium" data-i18n="docs.spin_title">轉盤++</div>
+              <div class="text-sm text-slate-600" data-i18n="docs.spin_desc">進入轉盤的說明</div>
+            </div>
+          </a>
+        </li>
+        <!-- GPS guide link with icon -->
+        <li>
+          <a href="gps.html#guide" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50 flex items-center gap-3">
+            <img src="gps_icon.png" alt="GPS時速表 icon" class="h-6 w-6 mr-3 rounded ring-1 ring-slate-200">
+            <div>
+              <div class="font-medium" data-i18n="docs.gps_title">GPS時速表</div>
+              <div class="text-sm text-slate-600" data-i18n="docs.gps_desc">進入時速表的說明</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="mt-4 text-right">
+        <button class="inline-flex items-center rounded-lg px-3 py-1.5 ring-1 ring-slate-300 text-sm hover:bg-slate-50" onclick="closeDocsModal()" data-i18n="docs.close">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-20">
+      <h1 class="text-3xl md:text-4xl font-extrabold" data-i18n="index.title">選擇產品</h1>
+    <p class="mt-3 text-slate-600" data-i18n="index.subtitle">歡迎來到 Yi Apps！以下是我們的應用程式：</p>
+    <div class="mt-8 grid md:grid-cols-2 gap-6">
+      <!-- Card: 轉盤++ -->
+      <!-- Wrap card in a link to the spinner introduction page -->
+      <a href="spin.html" class="card block rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft hover:bg-slate-50">
+        <!-- Use the first promotional image as the icon -->
+        <img src="spin_icon.png" alt="LuckySpin promotional image" class="h-10 w-10 rounded-md object-cover" />
+        <h2 class="mt-2 text-xl font-semibold" data-i18n="index.spinner_title">轉盤++</h2>
+        <p class="mt-2 text-slate-600" data-i18n="index.spinner_desc">自訂轉盤、抽獎記錄、儲存轉盤、隨機數字、中文介面與無廣告，讓決策更輕鬆。</p>
+        <div class="mt-4 inline-flex items-center gap-2 text-sm text-slate-700">
+          <span class="inline-flex px-2 py-1 rounded-full bg-emerald-100 text-emerald-700" data-i18n="index.spinner_tag">立即查看</span>
+        </div>
+      </a>
+      <!-- Card: GPS時速表 -->
+      <a href="gps.html" class="card block rounded-2xl p-6 ring-1 ring-slate-200 bg-white shadow-soft">
+        <img src="gps_icon.png" alt="Speedometer Icon" class="h-10 w-10" />
+        <h2 class="mt-2 text-xl font-semibold" data-i18n="index.speed_title">GPS時速表</h2>
+        <p class="mt-2 text-slate-600" data-i18n="index.speed_desc">精準測速、地圖模式、加速測試、相機 HUD、旅程紀錄與自由計算統計。</p>
+        <div class="mt-4 inline-flex items-center gap-2 text-sm text-slate-700">
+          <span class="inline-flex px-2 py-1 rounded-full bg-emerald-100 text-emerald-700" data-i18n="index.speed_tag">立即查看</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 bg-white border-t">
+    <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-slate-500">© 2025 Yi Apps — 版權所有，未經授權不得複製</div>
+      <div class="text-sm text-slate-500">Taichung, Taiwan · <a class="underline" href="mailto:tzuyichan0406@gmail.com">tzuyichan0406@gmail.com</a></div>
+    </div>
+  </footer>
+  <script>
+    /*
+      Translation support for Traditional Chinese (zh-Hant), Simplified Chinese (zh-Hans) and English (en).
+      Each element that needs translating has a data-i18n attribute whose value corresponds to a key in the translations object.
+      The setLang() function applies the selected language by updating the textContent of all matching elements.
+    */
+    const translations = {
+      'zh-Hant': {
+        'nav.gps': 'GPS時速表',
+        'nav.guide': '使用說明',
+        'nav.contact': '聯絡我們',
+        'nav.spin': '轉盤++',
+        'index.title': '選擇產品',
+        'index.subtitle': '歡迎來到 Yi Apps！以下是我們的應用程式：',
+        'index.spinner_title': '轉盤++',
+        'index.spinner_desc': '自訂轉盤、抽獎記錄、儲存轉盤、隨機數字、中文介面與無廣告，讓決策更輕鬆。',
+        'index.spinner_tag': '立即查看',
+        'index.speed_title': 'GPS時速表',
+        'index.speed_desc': '精準測速、地圖模式、加速測試、相機 HUD、旅程紀錄與自由計算統計。',
+        'index.speed_tag': '立即查看',
+        'nav.appstore': '前往 App Store',
+        'docs.choose': '選擇應用的使用說明',
+        'docs.spin_title': '轉盤++',
+        'docs.spin_desc': '進入轉盤的說明',
+        'docs.gps_title': 'GPS時速表',
+        'docs.gps_desc': '進入時速表的說明',
+        'docs.close': '關閉'
+      },
+      'zh-Hans': {
+        'nav.gps': 'GPS时速表',
+        'nav.guide': '使用说明',
+        'nav.contact': '联系我们',
+        'nav.spin': '转盘++',
+        'index.title': '选择产品',
+        'index.subtitle': '欢迎来到 Yi Apps！以下是我们的应用程序：',
+        'index.spinner_title': '转盘++',
+        'index.spinner_desc': '自定义转盘、抽奖记录、保存转盘、随机数字、中文界面与无广告，让决策更轻松。',
+        'index.spinner_tag': '立即查看',
+        'index.speed_title': 'GPS时速表',
+        'index.speed_desc': '精准测速、地图模式、加速测试、相机 HUD、旅程记录与自由计算统计。',
+        'index.speed_tag': '立即查看',
+        'nav.appstore': '前往 App Store',
+        'docs.choose': '选择应用的使用说明',
+        'docs.spin_title': '转盘++',
+        'docs.spin_desc': '进入转盘的说明',
+        'docs.gps_title': 'GPS时速表',
+        'docs.gps_desc': '进入时速表的说明',
+        'docs.close': '关闭'
+      },
+      'en': {
+        'nav.gps': 'GPS Speedometer',
+        'nav.guide': 'User Guide',
+        'nav.contact': 'Contact Us',
+        'nav.spin': 'LuckySpin++',
+        'index.title': 'Choose Your Product',
+        'index.subtitle': 'Welcome to Yi Apps! Here are our applications:',
+        'index.spinner_title': 'LuckySpin++',
+        'index.spinner_desc': 'Customizable spinner, draw records, save spinners, random numbers, Chinese interface and no ads to make decisions easier.',
+        'index.spinner_tag': 'View now',
+        'index.speed_title': 'GPS Speedometer',
+        'index.speed_desc': 'Accurate speed measurement, map mode, acceleration tests, camera HUD, trip records and customizable statistics.',
+        'index.speed_tag': 'View now',
+        'nav.appstore': 'App Store',
+        'docs.choose': 'Choose an app guide',
+        'docs.spin_title': 'LuckySpin++',
+        'docs.spin_desc': 'Open the spinner guide',
+        'docs.gps_title': 'GPS Speedometer',
+        'docs.gps_desc': 'Open the speedometer guide',
+        'docs.close': 'Close'
+      }
+    };
+    function openDocsModal(e){ if(e) e.preventDefault(); document.getElementById('docsModal').classList.remove('hidden'); }
+    function closeDocsModal(){ document.getElementById('docsModal').classList.add('hidden'); }
+    function setLang(lang) {
+      const trans = translations[lang];
+      if (!trans) return;
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (trans[key]) {
+          el.textContent = trans[key];
+        }
+      });
+    }
+    // Set default language to Traditional Chinese on load
+    setLang('zh-Hant');
+  </script>
+</body>
+</html>

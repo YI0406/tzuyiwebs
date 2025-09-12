@@ -83,8 +83,7 @@
       <div>
         <h1 class="text-3xl md:text-5xl font-extrabold leading-tight" data-i18n="gps.title">GPS時速表</h1>
         <p class="mt-4 text-slate-600 text-lg" data-i18n="gps.tagline">
-          GPS時速表是一款專為駕駛、騎乘與運動設計的多功能工具。
-不只顯示即時速度，更結合地圖導航、加速測試與錄影HUD，完整記錄你的每段旅程。
+          讓每段旅程更專業！精準測速、地圖模式、加速測試、相機 HUD、旅程紀錄與依使用者自由可計算的油耗/電耗統計。
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
           <a href="https://apps.apple.com/app/id6751755547" class="inline-flex items-center rounded-xl bg-black px-4 py-3 text-white text-base font-medium hover:opacity-90 shadow-soft bounce-button" data-i18n="gps.app_btn">
@@ -142,6 +141,61 @@
     </div>
   </section>
 
+  <!-- Demo Section -->
+  <section id="demos" class="py-12 md:py-20 bg-white">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6" data-i18n="gps.demos_title">操作展示</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Launch animation -->
+        <div class="rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft bg-white">
+          <img src="gpslunch.gif" alt="Launch animation" class="w-full h-auto" />
+          <div class="p-3 text-center">
+            <span class="text-sm text-slate-700" data-i18n="gps.demo.lunch">主頁資訊總覽，指針動畫流暢呈現</span>
+          </div>
+        </div>
+        <!-- Menu overview -->
+        <div class="rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft bg-white">
+          <img src="gpsmenu.gif" alt="Menu functions" class="w-full h-auto" />
+          <div class="p-3 text-center">
+            <span class="text-sm text-slate-700" data-i18n="gps.demo.menu">展開選單，完整功能一鍵掌握</span>
+          </div>
+        </div>
+        <!-- Settings overview -->
+        <div class="rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft bg-white">
+          <img src="gpssetting.gif" alt="Settings overview" class="w-full h-auto" />
+          <div class="p-3 text-center">
+            <span class="text-sm text-slate-700" data-i18n="gps.demo.setting">主題、單位、語言自訂，打造專屬介面</span>
+          </div>
+        </div>
+        <!-- Shortcut and Siri -->
+        <div class="rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft bg-white">
+          <img src="gpsgetshortcut.gif" alt="Shortcuts and Siri" class="w-full h-auto" />
+          <div class="p-3 text-center">
+            <span class="block text-sm text-slate-700 mb-2" data-i18n="gps.demo.shortcut">啟用捷徑或 Siri，常用模式隨叫隨到</span>
+            <div class="flex justify-center gap-2">
+              <a href="https://yi0406.github.io/tzuyiwebs/mapmode.shortcut" class="inline-flex items-center gap-1 rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white hover:opacity-90" data-i18n="gps.shortcut.map">取得地圖模式捷徑</a>
+              <a href="https://yi0406.github.io/tzuyiwebs/accelmode.shortcut" class="inline-flex items-center gap-1 rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white hover:opacity-90" data-i18n="gps.shortcut.accel">取得加速模式捷徑</a>
+            </div>
+          </div>
+        </div>
+        <!-- Acceleration records page -->
+        <div class="rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft bg-white">
+          <img src="gpsintoaccelrecords.gif" alt="Acceleration records" class="w-full h-auto" />
+          <div class="p-3 text-center">
+            <span class="text-sm text-slate-700" data-i18n="gps.demo.records">瀏覽加速紀錄，保存精彩紀錄</span>
+          </div>
+        </div>
+        <!-- 100–200 km/h mode -->
+        <div class="rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft bg-white">
+          <img src="gpsshowaccel.gif" alt="100–200 km/h mode" class="w-full h-auto" />
+          <div class="p-3 text-center">
+            <span class="text-sm text-slate-700" data-i18n="gps.demo.showaccel">多種加速模式，等你來體驗！</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Gallery Section -->
   <section class="py-12 md:py-20 bg-slate-50">
     <div class="mx-auto max-w-6xl px-4 grid md:grid-cols-3 gap-6">
@@ -172,8 +226,7 @@
         'nav.guide': '使用說明',
         'nav.contact': '聯絡我們',
         'gps.title': 'GPS時速表',
-        'gps.tagline': 'GPS時速表是一款專為駕駛、騎乘與運動設計的多功能工具。
-不只顯示即時速度，更結合地圖導航、加速測試與錄影HUD，完整記錄你的每段旅程。',
+        'gps.tagline': 'GPS時速表是一款專為駕駛、騎乘與運動設計的多功能工具。不只顯示即時速度，更結合地圖導航、加速測試與錄影HUD，完整記錄你的每段旅程。',
         'gps.app_btn': '立即下載',
         'gps.guide_btn': '使用說明',
         'gps.core_title': '核心功能',
@@ -189,6 +242,15 @@
         'gps.feature_trip_desc': '單筆/全選管理；匯出/匯入；支援依使用者自由可計算的油耗/電耗等多元統計。',
         'gps.feature_vip_title': 'VIP 高級功能',
         'gps.feature_vip_desc': '去廣告、完整紀錄、更多自訂；支援快捷選單/嘿 Siri/捷徑/自動化/動作按鈕。',
+        'gps.demos_title': '操作展示',
+        'gps.demo.lunch': '主頁資訊總覽，指針動畫流暢呈現',
+        'gps.demo.menu': '展開選單，完整功能一鍵掌握',
+        'gps.demo.setting': '主題、單位、語言自訂，打造專屬介面',
+        'gps.demo.shortcut': '啟用捷徑或 Siri，常用模式隨叫隨到',
+        'gps.demo.records': '瀏覽加速紀錄，保存精彩紀錄',
+        'gps.demo.showaccel': '多種加速模式，等你來體驗！',
+        'gps.shortcut.map': '取得地圖模式捷徑',
+        'gps.shortcut.accel': '取得加速模式捷徑',
         'docs.choose': '選擇應用的使用說明',
         'docs.spin_title': '轉盤++',
         'docs.spin_desc': '進入轉盤的說明',
@@ -202,8 +264,7 @@
         'nav.guide': '使用说明',
         'nav.contact': '联系我们',
         'gps.title': 'GPS时速表',
-        'gps.tagline': 'GPS时速表是一款专为驾驶、骑乘与运动设计的多功能工具。
-不只显示即时速度，更结合地图导航、加速测试与录影HUD，完整记录你的每段旅程。',
+        'gps.tagline': 'GPS时速表是一款专为驾驶、骑乘与运动设计的多功能工具。 不只显示即时速度，更结合地图导航、加速测试与录影HUD，完整记录你的每段旅程。',
         'gps.app_btn': '立即下载',
         'gps.guide_btn': '使用说明',
         'gps.core_title': '核心功能',
@@ -219,6 +280,15 @@
         'gps.feature_trip_desc': '单笔/全选管理；导出/导入；支持依用户自由可计算的油耗/电耗等多元统计。',
         'gps.feature_vip_title': 'VIP高级功能',
         'gps.feature_vip_desc': '去广告、完整记录、更多自定义；支持快捷菜单/嘿 Siri/捷径/自动化/动作按钮。',
+        'gps.demos_title': '操作展示',
+        'gps.demo.lunch': '主页信息总览，指针动画流畅呈现',
+        'gps.demo.menu': '展开菜单，完整功能一键掌握',
+        'gps.demo.setting': '主题、单位、语言自订，打造专属界面',
+        'gps.demo.shortcut': '启用捷径或 Siri，常用模式随叫随到',
+        'gps.demo.records': '浏览加速记录，保存精彩记录',
+        'gps.demo.showaccel': '多种加速模式，等你来体验！',
+        'gps.shortcut.map': '取得地图模式捷径',
+        'gps.shortcut.accel': '取得加速模式捷径',
         'docs.choose': '选择应用的使用说明',
         'docs.spin_title': '转盘++',
         'docs.spin_desc': '进入转盘的说明',
@@ -232,8 +302,7 @@
         'nav.guide': 'User Guide',
         'nav.contact': 'Contact Us',
         'gps.title': 'GPS Speedometer',
-        'gps.tagline': 'GPS Speedometer is a multifunctional tool designed for driving, riding, and sports.
-It not only displays real-time speed but also integrates map navigation, acceleration testing, and HUD recording to fully capture every journey.',
+        'gps.tagline': 'GPS Speedometer is a multifunctional tool designed for driving, riding, and sports.It not only displays real-time speed but also integrates map navigation, acceleration testing, and HUD recording to fully capture every journey.',
         'gps.app_btn': 'Download Now',
         'gps.guide_btn': 'User Guide',
         'gps.core_title': 'Core Features',
@@ -249,6 +318,15 @@ It not only displays real-time speed but also integrates map navigation, acceler
         'gps.feature_trip_desc': 'Manage single or all entries; export/import; support customizable fuel/electricity statistics.',
         'gps.feature_vip_title': 'VIP Features',
         'gps.feature_vip_desc': 'Remove ads, full records, more customization; support quick actions, Hey Siri, shortcuts, automation and action buttons.',
+        'gps.demos_title': 'Demo Showcase',
+        'gps.demo.lunch': 'Home dashboard at a glance with smooth needle animation',
+        'gps.demo.menu': 'Open the menu and access every feature instantly',
+        'gps.demo.setting': 'Customize theme, units and language for your personal interface',
+        'gps.demo.shortcut': 'Use Shortcuts or Siri to launch favorite modes instantly',
+        'gps.demo.records': 'Browse acceleration records and save your best moments',
+        'gps.demo.showaccel': 'Multiple acceleration modes—try them all!',
+        'gps.shortcut.map': 'Get Map Mode Shortcut',
+        'gps.shortcut.accel': 'Get Acceleration Mode Shortcut',
         'docs.choose': 'Choose an app guide',
         'docs.spin_title': 'LuckySpin++',
         'docs.spin_desc': 'Open the spinner guide',

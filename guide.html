@@ -74,7 +74,7 @@
 
   <section class="mx-auto max-w-3xl px-4 py-12 md:py-20">
     <h1 class="text-3xl md:text-4xl font-extrabold" data-i18n="guide.page_title">使用說明</h1>
-    <p class="mt-3 text-slate-600" data-i18n="guide.subtitle">以下教你 3 分鐘上手 GPS時速表。YouTube 影片將於稍後補上。</p>
+    <p class="mt-3 text-slate-600" data-i18n="guide.subtitle">以下教你 3 分鐘上手 GPS時速表。</p>
     <div class="mt-10 space-y-10">
       <!-- Quick Start -->
       <div>
@@ -86,7 +86,7 @@
         </ul>
         <div class="mt-4 grid md:grid-cols-2 gap-4">
           <img src="guide_quick1.jpg" alt="如何打開選單1" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
-          <img src="guide_quick2.png" alt="如何打開選單2" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+          <img src="gpsmenu.gif" alt="如何打開選單2" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
         </div>
       </div>
       <!-- Map Mode -->
@@ -97,8 +97,9 @@
           <li data-i18n="guide.map_b2">可在頁面切換北向/航向，並自動記錄路徑。</li>
           <li data-i18n="guide.map_b3">起點/終點與統計面板協助你掌握旅程資訊。</li>
         </ul>
-        <div class="mt-4">
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
           <img src="guide_map.jpg" alt="地圖模式說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+          <img src="gpsmap.gif" alt="地圖模式示意（gif）" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
         </div>
       </div>
       <!-- Acceleration Test -->
@@ -109,8 +110,9 @@
           <li data-i18n="guide.acc_b2">起步至達標自動計時，完成後保留最佳成績與最高速。</li>
           <li data-i18n="guide.acc_b3">若想再次測試，待車速降至安全後重新起步即可。</li>
         </ul>
-        <div class="mt-4">
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
           <img src="guide_acc.jpg" alt="加速測試說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+          <img src="gpsswitchaccelmode.gif" alt="切換加速模式示意（gif）" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
         </div>
       </div>
       <!-- Camera HUD -->
@@ -120,7 +122,7 @@
           <li data-i18n="guide.hud_b1">切換至「相機模式」即可在錄影上疊加速度錶。</li>
           <li data-i18n="guide.hud_b2">日夜皆清晰，適合騎行/駕駛紀錄（請遵守當地法規）。</li>
         </ul>
-        <div class="mt-4">
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
           <img src="guide_hud.jpg" alt="相機 HUD 說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
         </div>
       </div>
@@ -132,7 +134,7 @@
           <li data-i18n="guide.trip_b2">匯出/匯入，支援分享/備份（AirDrop/雲端）。</li>
           <li data-i18n="guide.trip_b3">依使用者自由可計算油耗/電耗等多元統計。</li>
         </ul>
-        <div class="mt-4">
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
           <img src="guide_trips.jpg" alt="旅程紀錄說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
         </div>
       </div>
@@ -143,16 +145,22 @@
           <li data-i18n="guide.siri_b1">支援桌面快捷選單、嘿 Siri、捷徑與自動化。</li>
           <li data-i18n="guide.siri_b2">可一鍵打開地圖模式或加速測試等常用功能。</li>
         </ul>
-        <div class="mt-4">
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
           <img src="guide_siri.png" alt="Siri 與捷徑說明" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+          <img src="gpsgetshortcut.gif" alt="取得捷徑示意（gif）" class="rounded-xl ring-1 ring-slate-200 shadow-soft">
+        </div>
+        <!-- Shortcut download buttons -->
+        <div class="mt-4 flex justify-center gap-3">
+          <a href="https://yi0406.github.io/tzuyiwebs/mapmode.shortcut" class="inline-flex items-center gap-1 rounded-full bg-black px-3 py-2 text-xs font-medium text-white hover:opacity-90" data-i18n="guide.shortcut.map">取得地圖模式捷徑</a>
+          <a href="https://yi0406.github.io/tzuyiwebs/accelmode.shortcut" class="inline-flex items-center gap-1 rounded-full bg-black px-3 py-2 text-xs font-medium text-white hover:opacity-90" data-i18n="guide.shortcut.accel">取得加速模式捷徑</a>
         </div>
       </div>
     </div>
 
     <div class="mt-12">
-      <h2 class="text-xl font-bold" data-i18n="guide.video_title">教學影片（預留）</h2>
-      <div class="mt-4 aspect-video rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft bg-black/5 flex items-center justify-center">
-        <span class="text-slate-500" data-i18n="guide.video_placeholder">YouTube 連結稍後補上</span>
+      <h2 class="text-xl font-bold" data-i18n="guide.video_title">介紹影片</h2>
+      <div class="mt-4 aspect-video rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-soft bg-black/5">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/V7hYcjRStU4" title="介紹影片" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
@@ -200,7 +208,7 @@
         'nav.contact': '聯絡我們',
         'guide.app_btn': '前往 App Store',
         'guide.page_title': '使用說明',
-        'guide.subtitle': '以下教你 3 分鐘上手 GPS時速表。YouTube 影片將於稍後補上。',
+        'guide.subtitle': '以下教你 3 分鐘上手 GPS時速表。',
         'guide.quick_title': '1）快速開始',
         'guide.quick_b1': '開啟 App 後授權位置權限。',
         'guide.quick_b2': '主畫面顯示即時速度；設定可切換 km/h 或 mph。',
@@ -223,8 +231,9 @@
         'guide.siri_title': '6）Siri 與捷徑',
         'guide.siri_b1': '支援桌面快捷選單、嘿 Siri、捷徑與自動化。',
         'guide.siri_b2': '可一鍵打開地圖模式或加速測試等常用功能。',
-        'guide.video_title': '教學影片（預留）',
-        'guide.video_placeholder': 'YouTube 連結稍後補上',
+        'guide.shortcut.map': '取得地圖模式捷徑',
+        'guide.shortcut.accel': '取得加速模式捷徑',
+        'guide.video_title': '介紹影片',
         'guide.download_title': '下載與聯絡',
         'guide.download_intro': '若有建議或合作洽談，請寄信至：',
         'guide.privacy': '隱私權政策',
@@ -242,7 +251,7 @@
         'nav.contact': '联系我们',
         'guide.app_btn': '前往 App Store',
         'guide.page_title': '使用说明',
-        'guide.subtitle': '以下教你3分钟上手GPS时速表。YouTube视频将于稍后补上。',
+        'guide.subtitle': '以下教你3分钟上手GPS时速表。',
         'guide.quick_title': '1）快速开始',
         'guide.quick_b1': '开启 App后授权位置权限。',
         'guide.quick_b2': '主画面显示即时速度；设置可切换 km/h 或 mph。',
@@ -265,8 +274,9 @@
         'guide.siri_title': '6）Siri 与捷径',
         'guide.siri_b1': '支持桌面快捷菜单、嘿 Siri、捷径与自动化。',
         'guide.siri_b2': '可一键打开地图模式或加速测试等常用功能。',
-        'guide.video_title': '教学影片（预留）',
-        'guide.video_placeholder': 'YouTube 链接稍后补上',
+        'guide.video_title': '介绍影片',
+        'guide.shortcut.map': '取得地图模式捷径',
+        'guide.shortcut.accel': '取得加速模式捷径',
         'guide.download_title': '下载与联络',
         'guide.download_intro': '若有建议或合作洽谈，请寄信至：',
         'guide.privacy': '隐私政策',
@@ -284,7 +294,7 @@
   "nav.contact": "Contact Us",
   "guide.app_btn": "Go to App Store",
   "guide.page_title": "User Guide",
-  "guide.subtitle": "Learn to use GPS Speedometer in 3 minutes. YouTube video coming soon.",
+  "guide.subtitle": "Learn to use GPS Speedometer in 3 minutes.",
   "guide.quick_title": "1) Quick Start",
   "guide.quick_b1": "Grant location permission after opening the app.",
   "guide.quick_b2": "The main screen shows real-time speed; settings allow switching between km/h and mph.",
@@ -307,8 +317,9 @@
   "guide.siri_title": "6) Siri & Shortcuts",
   "guide.siri_b1": "Supports home screen quick menu, Hey Siri, Shortcuts, and Automation.",
   "guide.siri_b2": "Launch common features like Map Mode or Acceleration Test with one tap.",
-  "guide.video_title": "Tutorial Video (Coming Soon)",
-  "guide.video_placeholder": "YouTube link coming soon",
+  "guide.video_title": "Intro Video",
+  "guide.shortcut.map": "Get Map Mode Shortcut",
+  "guide.shortcut.accel": "Get Acceleration Mode Shortcut",
   "guide.download_title": "Download & Contact",
   "guide.download_intro": "For suggestions or collaboration, please email:",
   "guide.privacy": "Privacy Policy",

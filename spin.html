@@ -40,6 +40,10 @@
           <img src="gps_icon.png" alt="GPS時速表 icon" class="h-5 w-5 mr-1 rounded ring-1 ring-slate-200">
           <span data-i18n="nav.gps">GPS時速表</span>
         </a>
+        <a href="bubble-pop.html" class="hover:text-slate-900 text-slate-600 flex items-center gap-1">
+          <img src="bubble-pop-match-icon.png" alt="Bubble Pop Match icon" class="h-5 w-5 mr-1 rounded ring-1 ring-slate-200">
+          <span data-i18n="nav.bubble">消泡泡！</span>
+        </a>
         <a href="#" onclick="openDocsModal(event)" class="hover:text-slate-900 text-slate-600" data-i18n="nav.guide">使用說明</a>
         <a href="mailto:tzuyichan0406@gmail.com" class="hover:text-slate-900 text-slate-600" data-i18n="nav.contact">聯絡我們</a>
       </nav>
@@ -80,6 +84,15 @@
             <div>
               <div class="font-medium" data-i18n="docs.gps_title">GPS時速表</div>
               <div class="text-sm text-slate-600" data-i18n="docs.gps_desc">進入時速表的說明</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="bubble-pop.html" class="block rounded-xl border border-slate-200 p-4 hover:bg-slate-50 flex items-center gap-3">
+            <img src="bubble-pop-match-icon.png" alt="Bubble Pop Match icon" class="h-6 w-6 mr-3 rounded ring-1 ring-slate-200">
+            <div>
+              <div class="font-medium" data-i18n="docs.bubble_title">Bubble Pop Match</div>
+              <div class="text-sm text-slate-600" data-i18n="docs.bubble_desc">進入消泡泡！頁面</div>
             </div>
           </a>
         </li>
@@ -255,6 +268,7 @@
     const translations = {
       'zh-Hant': {
         'nav.gps': 'GPS時速表',
+        'nav.bubble': '消泡泡！',
         'nav.spin': '轉盤++',
         'nav.guide': '使用說明',
         'nav.contact': '聯絡我們',
@@ -291,11 +305,14 @@
         'docs.spin_desc': '進入轉盤的說明',
         'docs.gps_title': 'GPS時速表',
         'docs.gps_desc': '進入時速表的說明',
+        'docs.bubble_title': 'Bubble Pop Match',
+        'docs.bubble_desc': '進入消泡泡！頁面',
         'docs.close': '關閉',
         'spin.privacy': '隱私權政策'
       },
       'zh-Hans': {
         'nav.gps': 'GPS时速表',
+        'nav.bubble': '消泡泡！',
         'nav.spin': '转盘++',
         'nav.guide': '使用说明',
         'nav.contact': '联系我们',
@@ -332,11 +349,14 @@
         'docs.spin_desc': '进入转盘的说明',
         'docs.gps_title': 'GPS时速表',
         'docs.gps_desc': '进入时速表的说明',
+        'docs.bubble_title': 'Bubble Pop Match',
+        'docs.bubble_desc': '进入消泡泡！页面',
         'docs.close': '关闭',
         'spin.privacy': '隐私政策'
       },
       'en': {
         'nav.gps': 'GPS Speedometer',
+        'nav.bubble': 'Bubble Pop Match',
         'nav.spin': 'LuckySpin++',
         'nav.guide': 'User Guide',
         'nav.contact': 'Contact Us',
@@ -373,6 +393,8 @@
         'docs.spin_desc': 'Open the spinner guide',
         'docs.gps_title': 'GPS Speedometer',
         'docs.gps_desc': 'Open the speedometer guide',
+        'docs.bubble_title': 'Bubble Pop Match',
+        'docs.bubble_desc': 'Open the Bubble Pop Match page',
         'docs.close': 'Close',
         'spin.privacy': 'Privacy Policy'
       }
